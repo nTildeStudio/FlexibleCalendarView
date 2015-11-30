@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.ntilde.flexiblecalendarview.sample.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+    <com.ntilde.flexiblecalendarview.FlexibleCalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:displayMonthName="true"
+        app:displayDaysName="true"
+        app:highlightToday="true"
+        app:multitouch="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="4"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Theme"/>
+
+            <Spinner
+                android:id="@+id/theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:entries="@array/theme"
+                android:layout_weight="8" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="4"
+            android:weightSum="10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="First day"/>
+
+            <Spinner
+                android:id="@+id/firstDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:spinnerMode="dialog"
+                android:entries="@array/weekdays" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <CheckBox
+            android:id="@+id/toggleMonthName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show month name"
+            android:layout_weight="5"
+            android:checked="true"/>
+
+        <CheckBox
+            android:id="@+id/toggleDaysName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show days name"
+            android:layout_weight="5"
+            android:checked="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <CheckBox
+            android:id="@+id/weekends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Highlight weekends"
+            android:layout_weight="5"
+            android:checked="true"/>
+
+        <CheckBox
+            android:id="@+id/multitouch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable multitouch"
+            android:layout_weight="5"
+            android:checked="true"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add event" />
+
+</LinearLayout>

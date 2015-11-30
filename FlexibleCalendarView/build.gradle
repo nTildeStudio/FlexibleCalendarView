@@ -1,0 +1,106 @@
+apply plugin: 'com.android.library'
+
+//TO UPLOAD TO BINTRAY
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+// TO UPLOAD TO BINTRAY
+group = "com.github.ntildestudio"
+version = "0.1.1"
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//TO UPLOAD TO BINTRAY
+def siteUrl = 'https://github.com/nTildeStudio/FlexibleCalendarView'            // Homepage URL of the library
+def issueUrl = 'https://github.com/nTildeStudio/FlexibleCalendarView/issues'    // URL for issues
+def gitUrl = 'https://github.com/nTildeStudio/FlexibleCalendarView.git'         // Git repository URL
+
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name 'FlexibleCalendarView'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'nTildeStudio'
+                        name 'Carlos Domínguez'
+                        email 'carlos.sevilla@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "FlexibleCalendarView"
+        websiteUrl = siteUrl
+        issueTrackerUrl = issueUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+        labels = []
+        publicDownloadNumbers = true
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:22.+'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+//TO UPLOAD TO BINTRAY
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task findConventions << {
+    println project.getConvention()
+}
